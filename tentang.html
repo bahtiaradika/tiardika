@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tentang Saya</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+:root{
+  --primary:#1053ba;
+  --ink:#0e1a2b;
+  --bg:#f5f7fb;
+  --white:#ffffff;
+  --card-radius:26px;
+  --shadow:0 10px 20px rgba(16,83,186,.15);
+  --shadow-1:0 10px 24px rgba(0,0,0,.14);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+
+body{
+  margin:0;
+  font-family: 'DM Serif Display', serif;
+  background: url("background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color:#333;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.page{
+  width:min(1000px, 95%);
+  margin:24px auto 40px;
+  animation: zoomIn 1.2s ease-in-out;
+}
+
+/* --- Keyframes --- */
+@keyframes fadeIn {
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+@keyframes zoomIn {
+  from{opacity:0; transform:scale(.85);}
+  to{opacity:1; transform:scale(1);}
+}
+@keyframes float {
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+}
+@keyframes pulse {
+  0%,100%{box-shadow:0 0 0 0 rgba(16,83,186,.6);}
+  50%{box-shadow:0 0 25px 6px rgba(16,83,186,.3);}
+}
+
+/* Topbar */
+.topbar{
+  background:var(--primary);
+  border-radius:32px;
+  padding:18px 28px;
+  box-shadow:var(--shadow);
+  display:flex;align-items:center;justify-content:center;
+  animation: fadeIn 1.2s ease-in-out;
+}
+.topbar h1{
+  color:#fff;
+  margin:0;letter-spacing:2px;word-spacing:4px;
+  font-size:44px; font-weight:400; text-transform:uppercase;
+  text-shadow:0 2px 0 rgba(0,0,0,.06);
+  animation: float 5s ease-in-out infinite;
+}
+
+/* Section title */
+.section-title{
+  text-align:center;margin:36px 0 18px;
+  font-size:36px; font-weight:400; letter-spacing:1px;
+  text-transform:uppercase; color:#17213a;
+  animation: fadeIn 1.3s ease-in-out;
+}
+
+.grid-2{
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;
+}
+
+.card-blue{
+  background:var(--primary);
+  color:#fff;
+  border-radius:var(--card-radius);
+  padding:22px 24px; line-height:1.65;
+  box-shadow:var(--shadow);
+  border:4px solid rgba(255,255,255,.15);
+  transition: transform .3s, box-shadow .3s;
+  animation: fadeIn 1.4s ease-in-out;
+}
+.card-blue:hover{
+  transform: scale(1.05) rotate(-1deg);
+  box-shadow:0 12px 28px rgba(16,83,186,.4);
+}
+
+.img-card{
+  background:#e9f0ff;
+  border-radius:var(--card-radius);
+  border:6px solid var(--primary);
+  box-shadow:var(--shadow);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;min-height:270px;
+  transition: transform .4s, box-shadow .3s;
+  animation: zoomIn 1.5s ease-in-out;
+}
+.img-card:hover{
+  transform: scale(1.07) rotate(2deg);
+  box-shadow:0 16px 32px rgba(16,83,186,.35);
+}
+.img-card img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition: transform .5s;
+}
+.img-card img:hover{ transform: scale(1.1) rotate(-3deg); }
+
+.card-wide{margin-top:22px}
+
+/* Strip judul */
+.strip{
+  background:var(--primary);
+  color:#fff;
+  border-radius:28px; box-shadow:var(--shadow);
+  padding:14px 24px; text-align:center;
+  font-size:38px; font-weight:400; letter-spacing:1px;
+  text-transform:uppercase;
+  margin:40px 0 16px;
+  animation: pulse 3s infinite;
+}
+
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
+
+.mini-card{
+  padding:20px 18px;
+  border-radius:var(--card-radius);
+  background:var(--primary);
+  color:#fff;
+  box-shadow:var(--shadow);
+  line-height:1.6;
+  text-align:center;
+  transition: transform .3s, box-shadow .3s;
+  animation: fadeIn 1.6s ease-in-out;
+}
+.mini-card:hover{
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow:0 14px 30px rgba(16,83,186,.4);
+}
+
+/* Footer */
+.footer {
+  margin-top: 30px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 50px;
+  box-shadow: var(--shadow-1);
+  padding: 12px 28px;
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-weight: 600;
+  font-size: 15px;
+  animation: fadeIn 1.8s ease-in-out;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform .3s, color .3s;
+}
+.footer a:hover {
+  text-decoration: underline;
+  opacity: 0.9;
+  transform: scale(1.2) rotate(3deg);
+}
+
+/* Titik 3 Menu */
+.menu-dots {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  font-size: 18px;
+  color: #fff;
+  background: rgba(16,83,186,0.7);
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background .2s, transform .3s;
+}
+.menu-dots:hover{ transform: scale(1.1) rotate(5deg); }
+.menu-dots.active {
+  background: var(--primary);
+}
+.dropdown-menu {
+  position: fixed;
+  top: 50px;
+  right: 20px;
+  background: var(--primary);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  display: none;
+  flex-direction: column;
+  min-width: 140px;
+  max-height: 120px;
+  overflow-y: auto;
+  z-index: 999;
+  animation: fadeIn .5s ease-in-out;
+}
+.dropdown-menu a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  transition: background .3s;
+}
+.dropdown-menu a:last-child {border-bottom: none;}
+.dropdown-menu a:hover {
+  background: rgba(255,255,255,0.25);
+}
+.dropdown-menu.show {display: flex;}
+
+/* Responsive */
+@media (max-width: 860px){
+  .topbar h1{font-size:36px}
+  .grid-2{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr}
+  .img-card{min-height:220px}
+  .footer{gap:14px}
+}
+
+  </style>
+</head>
+<body>
+  <main class="page">
+    <!-- Header -->
+    <header class="topbar">
+      <h1>TENTANG SAYA</h1>
+    </header>
+
+    <!-- Titik 3 Menu -->
+    <div class="menu-dots" onclick="toggleMenu(this)">
+      <i class="fa-solid fa-ellipsis-vertical"></i>
+    </div>
+
+    <!-- Dropdown -->
+    <nav class="dropdown-menu" id="dropdownMenu">
+      <a href="index.html">Home</a>
+      <a href="tentang.html">Tentang Saya</a>
+      <a href="pengalaman.html">Pengalaman</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+
+    <!-- Identitas -->
+    <h2 class="section-title">IDENTITAS SAYA</h2>
+    <section class="grid-2">
+      <article class="card-blue">
+        <p>Saya merupakan lulusan SMK Negeri 2 Pengasih dan saat ini berdomisili di Galur. 
+          Dengan bekal pendidikan yang saya tempuh, saya selalu berusaha untuk tidak hanya 
+          menguasai teori, tetapi juga mengasah keterampilan praktis yang bermanfaat untuk dunia kerja. 
+          Saya percaya bahwa proses belajar tidak berhenti setelah lulus sekolah, melainkan terus berlanjut 
+          sepanjang kehidupan. Oleh karena itu, saya senantiasa membuka diri terhadap pengetahuan baru, pengalaman baru, 
+          dan tantangan baru yang dapat memperkaya wawasan serta meningkatkan kemampuan saya.</p>
+        <p>Bagi saya, setiap pengalaman, baik itu keberhasilan maupun kegagalan, 
+          adalah guru yang sangat berharga. Dari keberhasilan, saya belajar untuk tetap 
+          rendah hati dan bersyukur. Dari kegagalan, saya belajar untuk bangkit, memperbaiki diri, 
+          dan tidak mengulangi kesalahan yang sama. Pola pikir inilah yang mendorong saya untuk selalu berbenah, berkembang, 
+          dan tidak pernah merasa puas hanya dengan apa yang sudah ada. Saya percaya bahwa kerja keras, 
+          disiplin, semangat pantang menyerah, dan doa yang tulus adalah kombinasi penting untuk meraih kesuksesan. 
+        </p>
+      </article>
+      <figure class="img-card" aria-label="Foto identitas">
+        <img src="pp.jpg" alt="Identitas" />
+      </figure>
+    </section>
+
+    <!-- Tentang tambahan -->
+    <section class="card-blue card-wide">
+      <p>Sejak duduk di bangku sekolah, saya berusaha untuk mengasah kemampuan diri, baik di dalam kelas maupun melalui pengalaman di luar kelas. Saya termasuk pribadi yang terbuka, mudah beradaptasi dengan lingkungan baru, serta senang bekerja sama dengan orang lain.</p>
+      <p>Ke depan, saya bertekad untuk terus berkembang dan berkontribusi, baik dalam dunia kerja maupun masyarakat luas.</p>
+    </section>
+
+    <!-- Hobby -->
+    <div class="strip">HOBBY</div>
+    <section class="grid-3">
+      <figure class="img-card" aria-label="Hobi 1">
+        <img src="hobi1.jpg" alt="Hobi 1" />
+      </figure>
+      <article class="mini-card">
+        <p>Saya adalah pribadi yang disiplin, mudah beradaptasi, 
+          serta mampu bekerja sama dengan baik. Di waktu luang, saya memiliki hobi lari dan futsal, 
+          yang saya jadikan sebagai cara menjaga kesehatan,
+           melatih sportivitas, kerjasama tim, serta membangun semangat positif setiap hari.</p>
+      </article>
+      <figure class="img-card" aria-label="Hobi 2">
+        <img src="hobi2.jpg" alt="Hobi 2" />
+      </figure>
+    </section>
+
+    <!-- Tujuan -->
+    <div class="strip">TUJUAN KEDEPAN</div>
+    <section class="card-blue">
+      <p>Tujuan saya ke depannya adalah untuk terus mengembangkan diri, baik dalam aspek pengetahuan, keterampilan, maupun sikap profesional, agar dapat menjadi pribadi yang lebih mandiri dan bermanfaat.</p>
+      <p>Harapan saya, ke depan dapat berkontribusi secara nyata di dunia kerja maupun di lingkungan masyarakat, dengan membawa sikap positif, semangat kerja yang tinggi, dan tanggung jawab yang kuat.</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <a href="https://instagram.com/bahtiar_adk.p" target="_blank" rel="noopener">
+      <i class="fab fa-instagram"></i> bahtiar_adk.p
+    </a>
+    <a href="https://www.tiktok.com/@adkkptr" target="_blank" rel="noopener">
+      <i class="fab fa-tiktok"></i> adkp
+    </a>
+    <a href="https://wa.me/6285786174117" target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i> +62 857-8617-4117
+    </a>
+  </footer>
+
+  <script>
+    function toggleMenu(el) {
+      document.getElementById("dropdownMenu").classList.toggle("show");
+      el.classList.toggle("active");
+    }
+    // Tutup menu kalau klik di luar
+    window.addEventListener("click", function(e) {
+      if (!e.target.closest(".menu-dots") && !e.target.closest(".dropdown-menu")) {
+        document.getElementById("dropdownMenu").classList.remove("show");
+        document.querySelector(".menu-dots").classList.remove("active");
+      }
+    });
+  </script>
+</body>
+</html>

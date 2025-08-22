@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pengalaman</title>
+  <!-- Google Font: DM Serif Display -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root{
+      --primary:#1053ba;
+      --ink:#0e1a2b;
+      --bg:#f5f7fb;
+      --white:#ffffff;
+      --card-radius:26px;
+      --shadow:0 10px 20px rgba(16,83,186,.15);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'DM Serif Display', serif;
+      color:#f0f4ff;
+      background: url("background.jpg") no-repeat center center fixed;
+      background-size: cover;
+    }
+    .page{
+      width:min(1000px, 95%);
+      margin:24px auto 40px;
+    }
+    .topbar{
+      background:var(--primary);
+      border-radius:32px;
+      padding:18px 28px;
+      box-shadow:var(--shadow);
+      display:flex;align-items:center;justify-content:center;
+      animation: slideDown 1s ease-out;
+    }
+    .topbar h1{
+      color:#fff;
+      margin:0;letter-spacing:2px;word-spacing:4px;
+      font-size:44px; font-weight:400; text-transform:uppercase;
+      text-shadow:0 2px 0 rgba(0,0,0,.06);
+    }
+    .section-title{
+      text-align:center;margin:36px 0 28px;
+      font-size:36px; font-weight:400; letter-spacing:1px;
+      text-transform:uppercase; color:#17213a;
+      animation: zoomBounce 1.2s ease-in-out;
+    }
+
+    /* Grid ubah jadi 1 kolom (gambar atas, teks bawah) */
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:20px;
+      margin-bottom:40px;
+    }
+
+    .card-blue{
+      background:var(--primary);
+      color:#fff;
+      border-radius:var(--card-radius);
+      padding:22px 24px;
+      line-height:1.65;
+      box-shadow:var(--shadow);
+      border:4px solid rgba(255,255,255,.15);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .card-blue h3{
+      margin-top:0;
+      font-size:24px;
+      text-transform:uppercase;
+      margin-bottom:12px;
+      color:#fff;
+    }
+    .card-blue:hover {
+      transform: rotate(-1deg) scale(1.05);
+      box-shadow: 0 14px 30px rgba(0,0,0,.25);
+    }
+
+    .img-card{
+      background:#e9f0ff;
+      border-radius:var(--card-radius);
+      border:6px solid var(--primary);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      min-height:270px;
+      opacity:0;
+      animation: fadeLeft 1.3s ease forwards;
+    }
+    .img-card img{width:100%;height:100%;object-fit:cover;display:block}
+    .img-card:hover {
+      transform: scale(1.08);
+      transition: transform 0.4s ease;
+    }
+
+    .footer {
+      margin-top: 30px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50px;
+      box-shadow: var(--shadow);
+      padding: 14px 24px;
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-weight: 600;
+      font-size: 15px;
+      animation: slideUp 1.1s ease-in-out;
+    }
+    .footer a {
+      color: #fff;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer a:hover { text-decoration: underline; opacity: 0.9; }
+
+    /* Titik 3 Menu */
+    .menu-dots {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      font-size: 18px;
+      color: #fff;
+      background: var(--primary);
+      padding: 6px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .menu-dots:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    .dropdown-menu {
+      position: fixed;
+      top: 50px;
+      right: 20px;
+      background: var(--primary);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      display: none;
+      flex-direction: column;
+      min-width: 140px;
+      max-height: 120px;
+      overflow-y: auto;
+      z-index: 999;
+    }
+    .dropdown-menu a {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    .dropdown-menu a:last-child {border-bottom: none;}
+    .dropdown-menu a:hover { background: rgba(255,255,255,0.25); }
+    .dropdown-menu.show {display: flex;}
+
+    /* Animations */
+    @keyframes slideDown {
+      from { transform: translateY(-100px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes zoomBounce {
+      0% { transform: scale(0.3); opacity: 0; }
+      60% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    @keyframes fadeLeft {
+      from { transform: translateX(-100px); opacity: 0; }
+      to   { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(60px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <h1>PENGALAMAN</h1>
+    </header>
+
+    <!-- Titik 3 Menu -->
+    <div class="menu-dots" onclick="toggleMenu()">
+      <i class="fa-solid fa-ellipsis-vertical"></i>
+    </div>
+
+    <!-- Dropdown -->
+    <nav class="dropdown-menu" id="dropdownMenu">
+      <a href="index.html">Home</a>
+      <a href="tentang.html">Tentang Saya</a>
+      <a href="pengalaman.html">Pengalaman</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+
+    <h2 class="section-title">PENGALAMAN SAYA</h2>
+
+    <!-- Pengalaman 1 -->
+    <section class="grid-2">
+      <figure class="img-card" aria-label="Pengalaman 1">
+        <img src="pengalaman1.jpg" alt="Pengalaman 1">
+      </figure>
+      <article class="card-blue">
+        <h3>PKL BSI UII</h3>
+        <p>Melaksanakan kegiatan praktik kerja lapangan dengan fokus pada pengelolaan jaringan komputer, administrasi server, serta dokumentasi sistem. 
+        Pengalaman ini memberikan pemahaman nyata tentang dunia kerja, kedisiplinan, dan tanggung jawab dalam lingkungan profesional.</p>
+      </article>
+    </section>
+
+    <!-- Pengalaman 2 -->
+    <section class="grid-2">
+      <figure class="img-card" aria-label="Pengalaman 2">
+        <img src="pengalaman2.jpg" alt="Pengalaman 2">
+      </figure>
+      <article class="card-blue">
+        <h3>KOMPETISI MIKROTIK</h3>
+        <p>Berpartisipasi dalam kompetisi Mikrotik yang menguji kemampuan konfigurasi jaringan, routing, manajemen bandwidth, serta keamanan jaringan. 
+        Melalui ajang ini saya belajar mengasah kecepatan, ketelitian, dan kerja sama tim dalam menyelesaikan studi kasus.</p>
+      </article>
+    </section>
+
+    <!-- Pengalaman 3 -->
+    <section class="grid-2">
+      <figure class="img-card" aria-label="Pengalaman 3">
+        <img src="pengalaman3.jpg" alt="Pengalaman 3">
+      </figure>
+      <article class="card-blue">
+        <h3>MTQ TK KAB. KULON PROGO</h3>
+        <p>
+          Saya pernah mengikuti Musabaqah Tilawatil Qur’an (MTQ) tingkat Kabupaten 
+          Kulon Progo dan berhasil meraih juara II pada cabang lomba Musabaqah Syarhil Qur’an (MSQ).
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <a href="https://instagram.com/bahtiar_adk.p" target="_blank" rel="noopener">
+      <i class="fab fa-instagram"></i> bahtiar_adk.p
+    </a>
+    <a href="https://www.tiktok.com/@adkkptr" target="_blank" rel="noopener">
+      <i class="fab fa-tiktok"></i> adkp
+    </a>
+    <a href="https://wa.me/6285786174117" target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i> +62 857-8617-4117
+    </a>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("dropdownMenu").classList.toggle("show");
+    }
+    // Tutup menu kalau klik di luar
+    window.addEventListener("click", function(e) {
+      if (!e.target.closest(".menu-dots") && !e.target.closest(".dropdown-menu")) {
+        document.getElementById("dropdownMenu").classList.remove("show");
+      }
+    });
+  </script>
+</body>
+</html>

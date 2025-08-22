@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Protofolio Saya</title>
+
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+    :root{
+    --primary:#1053ba;
+    --ink:#1b1e28;
+    --muted:#5f6b87;
+    --panel:#29e2ef;
+    --radius-xl:28px;
+    --radius-2xl:36px;
+    --shadow-1:0 10px 24px rgba(0,0,0,.14);
+    --shadow-2:0 18px 40px rgba(0,0,0,.16);
+  }
+  
+
+  /* --- base --- */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  :root{
+  --primary:#1053ba;
+  --ink:#1b1e28;
+  --muted:#5f6b87;
+  --panel:#29e2ef;
+  --radius-xl:28px;
+  --radius-2xl:36px;
+  --shadow-1:0 10px 24px rgba(0,0,0,.14);
+  --shadow-2:0 18px 40px rgba(0,0,0,.16);
+}
+
+/* --- base --- */
+*{box-sizing:border-box}
+html,body{height:100%}
+body {
+    margin: 0;
+    font-family: 'DM Serif Display', serif;  /* ✅ Ubah font jadi DM Serif Display */
+    background: url("background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    animation: fadeIn 1.2s ease-in-out;
+}
+p { text-align: justify; } 
+.wrap{
+  width:min(1100px,92vw);
+  margin-inline:auto;
+}
+
+  /* --- keyframes --- */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow:0 0 0 0 rgba(16,83,186,0.6); }
+    50% { box-shadow:0 0 25px 5px rgba(16,83,186,0.3); }
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    45% { opacity: 0.6; }
+    55% { opacity: 1; }
+  }
+
+  /* --- header --- */
+  .site-header{
+    background:var(--primary);
+    color:#f9f9f9;
+    border-bottom-left-radius:32px;
+    border-bottom-right-radius:32px;
+    box-shadow:var(--shadow-1);
+    position:relative;
+    animation: slideInDown 1s ease-in-out;
+  }
+  @keyframes slideInDown {
+    from { transform: translateY(-80px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  .site-header .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 24px;
+    gap:18px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.4px;
+    transition: transform .3s;
+  }
+  .brand:hover { transform: scale(1.1) rotate(-2deg); }
+  .brand .badge{ 
+    width:46px; height:46px; border-radius:50%; overflow:hidden; background:#fff1;
+    display:grid; place-items:center;
+    animation: pulse 3s infinite;
+  }
+  .brand .badge img{width:100%; height:100%; object-fit:cover}
+  .menu{ display:flex; gap:36px; flex-wrap:wrap}
+  .menu a{
+    color:#f6f6f6; text-decoration:none; font-weight:600; letter-spacing:.6px;
+    position: relative;
+    transition: all .3s;
+  }
+  .menu a::after {
+    content:"";
+    position:absolute;
+    left:0; bottom:-4px;
+    width:0; height:2px;
+    background:#fff;
+    transition:width .3s;
+  }
+  .menu a:hover{ opacity:.9; }
+  .menu a:hover::after { width:100%; }
+
+  /* --- hero --- */
+  .hero{
+    padding:54px 22px 18px;
+    text-align:center;
+    animation: fadeIn 1.4s ease-in-out;
+  }
+  .hero h1{
+    font-family:"DM Serif Display",serif;
+    font-size:clamp(28px,3.8vw,46px);
+    margin:0;
+    text-shadow:0 2px 0 #000000;
+    animation: flicker 3s infinite;
+  }
+  .hero h2{
+    font-family:"DM Serif Display",serif;
+    color:var(--primary);
+    font-size:clamp(42px,6.6vw,80px);
+    line-height:1.05;
+    margin:.15em 0 .25em;
+    animation: zoomIn 1.2s ease-out;
+  }
+
+  /* --- motivasi card --- */
+  .mot-box{
+    position:relative;
+    background:var(--panel);
+    border-radius:34px;
+    padding:22px 26px 18px;
+    margin:18px auto 38px;
+    box-shadow:var(--shadow-1);
+    max-width:980px;
+    animation: fadeIn 1.6s ease-in-out;
+    transition: transform .3s;
+  }
+  .mot-box:hover { transform: scale(1.05) rotate(1deg); }
+  .mot-box h3{
+    margin:0 0 8px; text-align:center;
+    color:#073a8f;
+    font-family:"DM Serif Display",serif;
+    font-size:clamp(22px,3vw,32px);
+    letter-spacing:.4px;
+  }
+  .mot-box p{ margin:0; color:#20314f; line-height:1.65 }
+
+  /* --- section: sekata --- */
+  .panel-blue{
+    background:var(--primary);
+    color:#ffffff;
+    border-radius:var(--radius-2xl);
+    box-shadow:var(--shadow-2);
+    padding:34px 26px;
+    position:relative;
+    overflow:hidden;
+    animation: float 6s ease-in-out infinite;
+  }
+  .section-title{
+    font-family:"DM Serif Display",serif;
+    font-size:clamp(24px,3.2vw,36px);
+    margin:0 0 14px; text-shadow:0 2px 0 rgba(0,0,0,.12);
+  }
+
+  .sekata-grid{
+    display:grid; grid-template-columns:1.05fr .95fr; gap:28px;
+    animation: fadeIn 1.8s ease-in-out;
+  }
+  .sekata p{margin:0 0 14px; color:#f0f4ff; line-height:1.75}
+
+  .photo-card{
+    background:#f7fbff; border-radius:22px; padding:16px;
+    box-shadow:inset 0 0 0 2px #dfefff; display:grid; place-items:center;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .photo-card:hover {
+    transform: scale(1.08) rotate(-2deg);
+    box-shadow:0 12px 28px rgba(16,83,186,.4);
+  }
+  .photo-card .photo{
+    width:100%; aspect-ratio:1/1; border-radius:18px; overflow:hidden;
+    background:#fffdfd; box-shadow:0 10px 22px rgba(16,83,186,.25);
+  }
+  .photo-card .photo img{ width:100%; height:100%; object-fit:cover }
+
+  /* --- galeri --- */
+  .gallery{
+    margin:36px 0;
+    animation: fadeIn 2s ease-in-out;
+  }
+  .gallery .panel{
+    background:var(--primary); color:#fff; border-radius:var(--radius-2xl);
+    padding:28px 26px 34px; box-shadow:var(--shadow-2); position:relative; overflow:hidden;
+    transition: transform .3s;
+  }
+  .gallery .panel:hover { transform: scale(1.03); }
+  .gallery h3{
+    font-family:"DM Serif Display",serif;
+    text-align:center; margin:0 0 18px; font-size:clamp(22px,3vw,32px);
+    text-shadow:0 2px 0 rgba(0,0,0,.12);
+  }
+  .grid{
+    display:grid; gap:18px;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  .grid .cell{
+    background:#f7fbff; border-radius:20px; padding:12px;
+    box-shadow:inset 0 0 0 2px #dfefff;
+    transition: transform .3s, box-shadow .3s;
+    animation: zoomIn 1s ease-in-out;
+  }
+  .grid .cell:hover {
+    transform: scale(1.07) rotate(2deg);
+    box-shadow:0 10px 20px rgba(16,83,186,.4);
+  }
+  .grid .cell img{
+    width:100%; aspect-ratio:1/1; border-radius:14px; object-fit:cover; display:block;
+    transition: transform .4s;
+  }
+  .grid .cell img:hover { transform: scale(1.1) rotate(-3deg); }
+
+  /* --- Footer --- */
+  .footer {
+    margin-top: 30px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 50px;
+    box-shadow: var(--shadow);
+    padding: 14px 24px;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-weight: 600;
+    font-size: 15px;
+    animation: slideInUp 1.4s ease-in-out;
+  }
+  @keyframes slideInUp {
+    from { transform: translateY(80px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .footer a {
+    color: #fff;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform .3s, color .3s;
+  }
+  .footer a:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+    transform: scale(1.2) rotate(3deg);
+  }
+
+  /* --- responsive --- */
+  @media (max-width:960px){
+    .sekata-grid{ grid-template-columns:1fr }
+  }
+  @media (max-width:560px){
+    .menu{ gap:18px }
+    .grid{ grid-template-columns:repeat(2,minmax(0,1fr)) }
+    .footer{ gap:14px }
+  }
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="badge"><img src="pp.jpg" alt="Logo"/></div>
+        <div>PORTOFOLIO</div>
+      </div>
+      <nav class="menu">
+        <a href="tentang.html">TENTANG SAYA</a>
+        <a href="pengalaman.html">PENGALAMAN</a>
+        <a href="blog.html">BLOG</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Selamat Datang di</h1>
+      <h2>Protofolio Saya</h2>
+    </section>
+
+    <!-- MOTIVASI -->
+    <section class="mot-box" id="blog">
+      <h3>Motivasi Hidup</h3> 
+      <p>
+        Hidup adalah perjalanan panjang yang penuh dengan tantangan, ujian, dan kesempatan.
+        Tidak semua hal akan berjalan sesuai keinginan kita. Kesulitan hadir untuk menempa,
+        bukan melemahkan. Jangan takut gagal—kegagalan hanyalah jalan memutar menuju sukses.
+        Selama kita terus berusaha dan berdoa, selalu ada harapan untuk memperbaiki diri dan
+        meraih apa yang kita impikan.
+      </p>
+    </section>
+
+    <!-- SEKATA DARI SAYA -->
+    <section class="panel-blue sekata" id="tentang">
+      <h3 class="section-title">Sekata dari saya</h3>
+      <div class="sekata-grid">
+        <div>
+          <p>
+            Hidup ini bukan hanya tentang seberapa sering kita jatuh, melainkan tentang seberapa kuat 
+            kita mampu bangkit setiap kali terjatuh. Setiap kegagalan yang kita alami bukanlah akhir dari 
+            segalanya, melainkan sebuah pelajaran berharga yang akan menempa diri kita menjadi pribadi yang 
+            lebih tangguh dan matang. Rasa sakit, kecewa, dan luka di perjalanan hidup hanyalah bagian dari 
+            proses yang mempersiapkan kita menuju keberhasilan yang lebih besar. Jangan pernah biarkan rasa takut, 
+            keraguan, atau pandangan orang lain menghentikan langkahmu. Karena pada akhirnya, yang benar-benar 
+            menentukan adalah dirimu sendiri dan keyakinanmu pada mimpi yang sedang kau perjuangkan.
+          </p>
+          <p>
+            Percayalah pada proses, meski jalannya terasa lambat dan penuh hambatan. Ingatlah, tidak ada 
+            pencapaian besar yang diraih dalam semalam. Setiap langkah kecil yang kamu ambil hari ini, sekecil apa pun itu, 
+            akan membawamu selangkah lebih dekat menuju impianmu. Jangan remehkan usaha kecil, karena justru dari hal-hal sederhana 
+            itulah terbentuk pondasi besar yang kuat. Fokuslah pada perkembangan diri, rawat semangatmu, dan jangan pernah berhenti belajar.
+          </p>
+        </div>
+
+        <!-- BINGKAI FOTO 1:1 -->
+        <div class="photo-card" aria-label="Bingkai Foto 1:1">
+          <div class="photo">
+            <img src="identitas.jpg" alt="Foto identitas 1:1"/>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERI -->
+    <section class="gallery" id="pengalaman">
+      <div class="panel">
+        <h3>Galeri Kegiatan</h3>
+        <div class="grid">
+          <div class="cell"><img src="1.jpg" alt="kegiatan 1"></div>
+          <div class="cell"><img src="2.jpg" alt="kegiatan 2"></div>
+          <div class="cell"><img src="3.jpg" alt="kegiatan 3"></div>
+          <div class="cell"><img src="4.jpg" alt="kegiatan 4"></div>
+          <div class="cell"><img src="5.jpg" alt="kegiatan 5"></div>
+          <div class="cell"><img src="6.jpg" alt="kegiatan 6"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<!-- FOOTER BAR -->
+<div class="footer">
+  <a href="https://instagram.com/bahtiar_adk.p" target="_blank" rel="noopener">
+    <i class="fab fa-instagram"></i> bahtiar_adk.p
+  </a>
+  <a href="https://www.tiktok.com/@adkkptr?_t=ZS-8z3ASPz5xEv&_r=1" target="_blank" rel="noopener">
+    <i class="fab fa-tiktok"></i> adkp
+  </a>
+  <a href="https://wa.me/6285786174117" target="_blank" rel="noopener">
+    <i class="fab fa-whatsapp"></i> +62 857-8617-4117
+  </a>
+</div>
+</body>
+</html>

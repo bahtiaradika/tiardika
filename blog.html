@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog</title>
+
+  <!-- Google Font: DM Serif Display -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root{
+      --primary:#1053ba;
+      --ink:#0e1a2b;
+      --bg:#f5f7fb;
+      --white:#ffffff;
+      --card-radius:26px;
+      --shadow:0 10px 20px rgba(16,83,186,.15);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'DM Serif Display', serif;
+      background: url("background.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color:#17213a;
+    }
+    .page{
+      width:min(1000px, 95%);
+      margin:24px auto 40px;
+    }
+
+    /* HEADER */
+    .topbar{
+      background:var(--primary);
+      border-radius:32px;
+      padding:18px 28px;
+      box-shadow:var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .topbar h1{
+      color:#fff;
+      margin:0;
+      letter-spacing:2px;
+      word-spacing:4px;
+      font-size:44px;
+      font-weight:400;
+      text-transform:uppercase;
+      text-shadow:0 2px 0 rgba(0,0,0,.06);
+    }
+
+    .section-title{
+      text-align:center;
+      margin:36px 0 28px;
+      font-size:36px;
+      font-weight:400;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      color:#17213a;
+    }
+
+    /* BLOG LIST */
+    .blog-list{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+    }
+    .blog-card{
+      background:var(--primary);
+      color:#fff;
+      border-radius:var(--card-radius);
+      padding:22px 24px;
+      line-height:1.6;
+      box-shadow:var(--shadow);
+      border:4px solid rgba(255,255,255,.15);
+    }
+    .blog-card h3{
+      margin-top:0;
+      font-size:22px;
+      text-transform:uppercase;
+      margin-bottom:12px;
+    }
+    .blog-card p{margin-bottom:16px}
+
+    .btn-group{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      background:#fff;
+      color:var(--primary);
+      padding:8px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      transition:.2s;
+    }
+    .btn:hover{background:#f0f0f0}
+
+    /* FOOTER */
+    .footer {
+      margin-top: 40px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50px;
+      box-shadow: var(--shadow);
+      padding: 14px 24px;
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .footer a {
+      color: #fff;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer a:hover { text-decoration: underline; opacity: 0.9; }
+
+    @media(max-width:768px){
+      .blog-list{grid-template-columns:1fr}
+    }
+
+    /* TITIK 3 MENU */
+    .menu-dots {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      font-size: 18px;
+      color: #fff;
+      background: var(--primary);
+      padding: 6px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .menu-dots:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .dropdown-menu {
+      position: fixed;
+      top: 50px;
+      right: 20px;
+      background: var(--primary);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      display: none;
+      flex-direction: column;
+      min-width: 140px;
+      max-height: 120px;
+      overflow-y: auto;
+      z-index: 999;
+    }
+    .dropdown-menu a {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    .dropdown-menu a:last-child {border-bottom: none;}
+    .dropdown-menu a:hover {
+      background: rgba(255,255,255,0.25);
+    }
+    .dropdown-menu.show {display: flex;}
+    /* ===== Animations Blog ===== */
+
+/* Topbar turun dari atas */
+.topbar {
+  animation: slideDown 1s ease-out;
+}
+@keyframes slideDown {
+  from { transform: translateY(-80px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* Section title zoom + fade */
+.section-title {
+  animation: zoomFade 1.2s ease;
+}
+@keyframes zoomFade {
+  0% { transform: scale(0.3); opacity: 0; }
+  70% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* Blog cards muncul fade-up satu per satu */
+.blog-card {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 1s ease forwards;
+}
+.blog-card:nth-child(1) { animation-delay: 0.3s; }
+.blog-card:nth-child(2) { animation-delay: 0.6s; }
+.blog-card:nth-child(3) { animation-delay: 0.9s; }
+.blog-card:nth-child(4) { animation-delay: 1.2s; }
+@keyframes fadeUp {
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Hover efek blog-card */
+.blog-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.blog-card:hover {
+  transform: translateY(-10px) scale(1.03) rotate(-1deg);
+  box-shadow: 0 14px 30px rgba(0,0,0,.25);
+}
+
+/* Button pulse saat hover */
+.btn:hover {
+  animation: pulse 0.6s ease;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* Footer animasi naik */
+.footer {
+  animation: slideUp 1s ease-in-out;
+}
+@keyframes slideUp {
+  from { transform: translateY(60px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+  </style>
+</head>
+<body>
+  <main class="page">
+    <!-- HEADER -->
+    <header class="topbar">
+      <h1>BLOG</h1>
+    </header>
+
+    <!-- Titik 3 Menu -->
+    <div class="menu-dots" onclick="toggleMenu()">
+      <i class="fa-solid fa-ellipsis-vertical"></i>
+    </div>
+
+    <!-- Dropdown -->
+    <nav class="dropdown-menu" id="dropdownMenu">
+      <a href="index.html">Home</a>
+      <a href="tentang.html">Tentang Saya</a>
+      <a href="pengalaman.html">Pengalaman</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+
+    <h2 class="section-title">KUMPULAN ARTIKEL</h2>
+
+    <!-- Blog list -->
+    <section class="blog-list">
+      <!-- Artikel 1 -->
+      <article class="blog-card">
+        <h3>MIKROTIK DHCP WLAN</h3>
+        <p>Pembahasan Konfigurasi DHCP WLAN</p>
+        <div class="btn-group">
+          <a href="artikel1.pdf" target="_blank" class="btn">
+            <i class="fa-solid fa-file-pdf"></i> Buka
+          </a>
+          <a href="artikel1.pdf" download class="btn">
+            <i class="fa-solid fa-download"></i> Download
+          </a>
+        </div>
+      </article>
+
+      <!-- Artikel 2 -->
+      <article class="blog-card">
+        <h3>DNS Server dan WEB Server </h3>
+        <p>Tutorial konfigurasi DNS Server dan WEB Server</p>
+        <div class="btn-group">
+          <a href="artikel2.pdf" target="_blank" class="btn">
+            <i class="fa-solid fa-file-pdf"></i> Buka
+          </a>
+          <a href="artikel2.pdf" download class="btn">
+            <i class="fa-solid fa-download"></i> Download
+          </a>
+        </div>
+      </article>
+
+      <!-- Artikel 3 -->
+      <article class="blog-card">
+        <h3>Dasar Mikrotik</h3>
+        <p>Konfigurasi Dasar Dasar Mikrotik</p>
+        <div class="btn-group">
+          <a href="artikel3.pdf" target="_blank" class="btn">
+            <i class="fa-solid fa-file-pdf"></i>Buka
+          </a>
+          <a href="artikel3.pdf" download class="btn">
+            <i class="fa-solid fa-download"></i> Download
+          </a>
+        </div>
+      </article>
+
+      <!-- Artikel 4 -->
+      <article class="blog-card">
+        <h3>Install Debian 9.6</h3>
+        <p>Konfigurasi Install debian 9.6</p>
+        <div class="btn-group">
+          <a href="artikel4.pdf" target="_blank" class="btn">
+            <i class="fa-solid fa-file-pdf"></i> Buka
+          </a>
+          <a href="artikel4.pdf" download class="btn">
+            <i class="fa-solid fa-download"></i> Download
+          </a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <a href="https://instagram.com/bahtiar_adk.p" target="_blank">
+      <i class="fab fa-instagram"></i> bahtiar_adk.p
+    </a>
+    <a href="https://www.tiktok.com/@adkkptr" target="_blank">
+      <i class="fab fa-tiktok"></i> adkp
+    </a>
+    <a href="https://wa.me/6285786174117" target="_blank">
+      <i class="fab fa-whatsapp"></i> +62 857-8617-4117
+    </a>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("dropdownMenu").classList.toggle("show");
+    }
+    // Tutup menu kalau klik di luar
+    window.addEventListener("click", function(e) {
+      if (!e.target.closest(".menu-dots") && !e.target.closest(".dropdown-menu")) {
+        document.getElementById("dropdownMenu").classList.remove("show");
+      }
+    });
+  </script>
+</body>
+</html>
